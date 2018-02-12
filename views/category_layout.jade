@@ -1,0 +1,45 @@
+extends basic_layout
+
+block main
+  .col-sm-3
+    .category_title
+      a.hidden_link(href='/') Categories
+    #accordion.panel-group
+      - var panelCollapseId,isSelectedCat,subCats,elementClass;
+      - for(var catName in categories){
+        - isSelectedCat=false;
+        - panelCollapseId="collapse_"+catName;
+        - subCats=categories[catName];
+        - for(var i = 0; i < subCats.length; i++){
+          - if(selectedCatId && selectedCatId === subCats[i].id){
+            - isSelectedCat=true;
+            - break
+            - }
+        - }
+        .panel.panel-default
+          .panel-heading
+            .panel-title
+            - elementClass="accordion-toggle";
+            - if(!isSelectedCat){
+                - elementClass+=" collapsed"
+                - }
+              a(class=elementClass data-toggle='collapse', data-parent='#accordion', href='##{panelCollapseId}')
+                span #{catName}
+
+          - elementClass="panel-collapse collapse";
+          - if(isSelectedCat){
+          - elementClass+=" in"
+          - }      
+          div(class=elementClass id=panelCollapseId)
+            .list-group
+              - for(var i = 0; i < subCats.length; i++){
+                - elementClass="list-group-item";
+                - if(selectedCatId && selectedCatId === subCats[i].id){
+                - elementClass+=" active"
+                - }
+                a(class=elementClass  href='/cat/#{subCats[i].id}') #{subCats[i].name}
+              - }
+      - }
+
+  .col-sm-9
+    block content

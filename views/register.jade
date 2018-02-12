@@ -1,0 +1,40 @@
+extends basic_layout
+
+block main
+  .container
+    form.register_form.form-horizontal
+      fieldset
+
+        h3.text-center Register
+
+        .form-group
+          label.col-sm-4.control-label(for='input_name') Name
+          .col-sm-4
+            input#input_name.form-control.input-md(name='name', type='text', placeholder='John Smith', required='')
+          .error.col-sm-4
+            label.error.control-label(for='input_name')
+              span.glyphicon.glyphicon-remove
+              span.msg
+            
+        .form-group
+          label.col-sm-4.control-label(for='input_email') Email
+          .col-sm-4
+            input#input_email.form-control.input-md(name='email', type='email', placeholder='john.smith@mail.com', required='')
+          .error.col-sm-4
+            label.error.control-label(for='input_email')
+              span.glyphicon.glyphicon-remove
+              span.msg
+
+        .form-group
+          label.col-sm-4.control-label(for='input_password') Password
+          .col-sm-4
+            input#input_password.form-control.input-md(name='password', type='password', placeholder='Enter your password', minlength='6', maxlength='20', required='')
+          .col-sm-4
+            label.error.control-label(for='input_password')
+              span.glyphicon.glyphicon-remove
+              span.msg 
+
+        .form-group
+          label.col-sm-4.control-label(for='submit_button')
+          .horizontal_center.submit_wrapper.col-sm-4
+            button#submit_button.btn.btn-lg.btn-primary Register

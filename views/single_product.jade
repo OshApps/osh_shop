@@ -1,0 +1,48 @@
+extends category_layout
+
+block content
+  .card
+    .container-fliud
+      .wrapper.row
+        .preview.col-md-6
+          img.product_img(src='#{product.img}')
+        .product_details.col-md-6
+          h3.product_title #{product.name}
+          .product_rating
+            .stars
+              span.fa.fa-star.checked
+              span.fa.fa-star.checked
+              span.fa.fa-star.checked
+              span.fa.fa-star
+              span.fa.fa-star
+          p.product-description #{product.description}
+          h5.product_price
+            span price: 
+            span.price #{product.price}
+          h5.product_size
+            span.options sizes:
+            .btn-group(data-toggle='buttons')
+              - var sizes=product.size;
+              - var active="active";
+              - for(var i=0; i < sizes.length; i++){
+                label(class="size btn " + active ,data-size='#{sizes[i]}')
+                  input(type='radio', name='options',  autocomplete='off', checked='')
+                  span.vertical_center.horizontal_center #{sizes[i]}
+                - active="";
+              - }
+          h5.product_color
+            span.options colors:
+            .btn-group(data-toggle='buttons')
+              - var colors=product.color;
+              - var active="active";
+              - for(var i=0; i < colors.length; i++){
+                label(style='background-color: #{colors[i]};', class="color btn " + active, data-color='#{colors[i]}')
+                  input(type='radio', name='options', autocomplete='off', checked='')
+                  span.vertical_center.horizontal_center.glyphicon.glyphicon-ok
+                - active="";
+              - }
+              
+          .action
+            button.add_cart_button.button.btn(type='button' data-id="#{product.id}") add to cart
+            button.like.button.btn(type='button')
+              span.fa.fa-heart

@@ -1,0 +1,35 @@
+extends basic_layout
+
+block main
+  .login
+    h3
+      | Please Login, or 
+      a(href='/register') Register
+    .row
+      .col-xs-6.col-sm-6.col-md-6
+        a.btn.btn-lg.btn-primary.btn-block(href='#') Facebook
+      .col-xs-6.col-sm-6.col-md-6
+        a.btn.btn-lg.btn-info.btn-block(href='#') Google
+    .login-or
+      hr.hr-or
+      span.span-or or
+    form.login_form(role='form')
+      .form-group.login_error
+        .error
+          span.msg The email or password is incorrect
+      .form-group
+        label(for='input_email') Email
+        input#input_email.form-control(type='email')
+        label.error.control-label(for='input_password')
+              span.glyphicon.glyphicon-remove
+              span.msg
+      .form-group
+        a.pull-right(href='#') Forgot password?
+        label(for='input_password') Password
+        input#input_password.form-control(type='password')
+        label.error.control-label(for='input_password')
+              span.glyphicon.glyphicon-remove
+              span.msg
+      
+      .horizontal_center.submit_wrapper
+        button#submit.btn.btn-lg.btn-primary Login
